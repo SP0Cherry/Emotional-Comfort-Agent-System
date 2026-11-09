@@ -1,0 +1,34 @@
+{
+  "name": "emotion-companion-demo",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "description": "A dependency-free MVP for the emotion recognition module of a dialect companion robot.",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "models": "zsh scripts/run-model-service.sh",
+    "demo": "node scripts/start-demo.mjs",
+    "test": "node --test",
+    "evaluate": "node scripts/evaluate.mjs",
+    "evaluate:challenge": "node scripts/evaluate.mjs --corpus=mandarin-challenge",
+    "evaluate:holdout": "node scripts/evaluate.mjs --corpus=mandarin-holdout",
+    "evaluate:hybrid": "node scripts/evaluate-hybrid.mjs",
+    "build:external": ".venv-text/bin/python scripts/build_external_benchmark.py",
+    "build:brighter": ".venv-text/bin/python scripts/build_brighter_benchmark.py",
+    "build:sealed": ".venv-text/bin/python scripts/build_sealed_test.py",
+    "evaluate:external": "node scripts/evaluate-external.mjs",
+    "evaluate:external:brighter": "EXTERNAL_CORPUS=brighter-chinese node scripts/evaluate-external.mjs",
+    "enrich:classifier": "node scripts/enrich-classifier-external.mjs",
+    "enrich:classifier:brighter": "EXTERNAL_CORPUS=brighter-chinese node scripts/enrich-classifier-external.mjs",
+    "enrich:finetuned:brighter": "EXTERNAL_CORPUS=brighter-chinese node scripts/enrich-finetuned-external.mjs",
+    "tune:finetuned": "node scripts/tune-finetuned-output.mjs",
+    "validate:data": "node scripts/validate-dataset.mjs",
+    "finetune:text": ".venv-text/bin/python scripts/finetune_text.py",
+    "finetune:multitask": ".venv-text/bin/python scripts/train_multitask_text.py evaluation/brighter-chinese.jsonl --sealed evaluation/brighter-sealed-test.jsonl",
+    "finetune:hierarchical": ".venv-text/bin/python scripts/train_hierarchical_stacker.py evaluation/brighter-chinese.jsonl --sealed evaluation/brighter-sealed-test.jsonl --external-train evaluation/external-chinese-dialogue.jsonl --external-test evaluation/external-chinese-dialogue.jsonl"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

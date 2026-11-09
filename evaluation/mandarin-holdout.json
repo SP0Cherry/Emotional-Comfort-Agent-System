@@ -1,0 +1,12 @@
+[
+  { "text": "这件事终于有了好结果，我挺欣慰。", "expected": "joy" },
+  { "text": "心里的石头总算落地了。", "expected": "calm" },
+  { "text": "现在没什么烦心事，状态挺稳。", "expected": "calm" },
+  { "text": "这几天一直提不起精神，谁也不想见。", "expected": "sadness" },
+  { "text": "一想到工作上的事就心里发紧。", "expected": "anxiety" },
+  { "text": "这种处理方式真让人憋火。", "expected": "anger_irritation" },
+  { "text": "他一点都不顾及别人，我很不满。", "expected": "anger_irritation" },
+  { "text": "我准备把材料重新整理一遍。", "expected": "neutral" },
+  { "text": "今晚七点开始。", "expected": "neutral" },
+  { "text": "你方便把文件发过来吗？", "expected": "neutral" }
+]

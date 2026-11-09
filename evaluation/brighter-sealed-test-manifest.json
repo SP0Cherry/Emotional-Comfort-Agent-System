@@ -1,0 +1,14 @@
+{
+  "source": "brighter-dataset/BRIGHTER-emotion-intensities",
+  "split": "official test complement",
+  "rows": 1449,
+  "label_counts": {
+    "anger_irritation": 682,
+    "neutral": 345,
+    "joy": 298,
+    "sadness": 124
+  },
+  "excluded_development_ids": 1190,
+  "output_sha256": "a31bd59fa55d445b40a72f4935bf2e9aec1eccb90c72fdf227e0d48a843fd09f",
+  "claim": "These rows were not included in the 1000-row development/error-analysis sample. Use once for the final fine-tuned model evaluation."
+}

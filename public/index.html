@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="普通话情感陪伴机器人的情感识别模块演示"
+    />
+    <title>心迹 · 情感状态台</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css?v=0.6.0" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="心迹情感状态台首页">
+          <span class="brand-mark" aria-hidden="true">心</span>
+          <span>
+            <strong>心迹</strong>
+            <small>情感状态台</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <span id="modelBadge" class="mode-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="modelBadgeText">普通话 MVP</span>
+          </span>
+          <button id="resetSession" class="button button-quiet" type="button">
+            新对话
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="conversation" aria-labelledby="conversationTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">CONVERSATION</p>
+              <h1 id="conversationTitle">说说此刻的感受</h1>
+            </div>
+            <span class="language-chip">普通话 · zh-CN</span>
+          </div>
+
+          <div class="conversation-surface">
+            <div class="welcome-note" id="welcomeNote">
+              <p class="welcome-title">这是一个可联调的最小版本。</p>
+              <p>
+                输入普通话文字或语音后，右侧会更新情绪、强度、风险和多轮趋势。本地模型与规则共同判断，不进行医学判断。
+              </p>
+            </div>
+
+            <div
+              id="messages"
+              class="messages"
+              role="log"
+              aria-live="polite"
+              aria-label="对话记录"
+            ></div>
+
+            <div class="sample-row" aria-label="示例对话">
+              <span>试试：</span>
+              <button
+                class="sample-chip"
+                type="button"
+                data-text="今天还行，就是有点累。"
+              >
+                有点累
+              </button>
+              <button
+                class="sample-chip"
+                type="button"
+                data-text="最近做什么都提不起劲，心里很难受。"
+              >
+                持续低落
+              </button>
+              <button
+                class="sample-chip"
+                type="button"
+                data-text="明天要答辩了，我一直睡不着，担心会搞砸。"
+              >
+                焦虑
+              </button>
+            </div>
+
+            <form id="conversationForm" class="composer">
+              <label class="sr-only" for="textInput">输入你想说的话</label>
+              <textarea
+                id="textInput"
+                name="text"
+                rows="2"
+                maxlength="500"
+                placeholder="比如：最近总觉得自己做得不够好……"
+                autocomplete="off"
+              ></textarea>
+              <div class="composer-footer">
+                <div class="composer-tools">
+                  <button
+                    id="micButton"
+                    class="icon-button"
+                    type="button"
+                    aria-label="使用普通话语音输入"
+                    aria-pressed="false"
+                  >
+                    <span aria-hidden="true">◉</span>
+                    <span id="micLabel">语音</span>
+                  </button>
+                  <span class="keyboard-hint">Enter 发送 · Shift + Enter 换行</span>
+                </div>
+                <button id="sendButton" class="button button-primary" type="submit">
+                  分析情绪
+                </button>
+              </div>
+            </form>
+            <p id="connectionStatus" class="connection-status" aria-live="polite">
+              正在连接本地识别服务…
+            </p>
+          </div>
+        </section>
+
+        <aside class="state-panel" aria-labelledby="stateTitle">
+          <div class="state-heading">
+            <div>
+              <p class="eyebrow">EMOTION STATE</p>
+              <h2 id="stateTitle">情绪状态</h2>
+            </div>
+            <span id="analysisStatus" class="analysis-status">等待输入</span>
+          </div>
+
+          <div
+            id="riskBanner"
+            class="risk-banner"
+            role="alert"
+            aria-live="assertive"
+            hidden
+          >
+            <strong id="riskTitle">需要关注</strong>
+            <span id="riskDetail"></span>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-orbit" aria-hidden="true">
+              <span></span>
+            </div>
+            <p>情绪状态会在这里出现</p>
+            <small>从一句话开始，再继续几轮观察变化。</small>
+          </div>
+
+          <div id="analysisPanel" class="analysis-panel" hidden>
+            <section class="state-hero" aria-labelledby="primaryEmotion">
+              <div id="confidenceRing" class="confidence-ring">
+                <div class="confidence-inner">
+                  <span id="emotionGlyph" class="emotion-glyph" aria-hidden="true"
+                    >·</span
+                  >
+                  <strong id="primaryEmotion">中性</strong>
+                  <span id="confidenceValue">0%</span>
+                </div>
+              </div>
+              <div class="state-summary">
+                <span class="summary-label">当前主要状态</span>
+                <p id="stateSentence">还没有足够的信息判断情绪。</p>
+                <span id="dialectStatus" class="subtle-badge">普通话 · zh-CN</span>
+                <span id="decisionStatus" class="subtle-badge">等待判断</span>
+                <div class="modality-list" aria-label="模态质量">
+                  <span id="textQualityBadge" class="modality-badge">文本 —</span>
+                  <span id="speechQualityBadge" class="modality-badge">语音 —</span>
+                  <span class="modality-badge muted">视觉未接入</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="metric-grid" aria-label="连续情绪维度">
+              <article class="metric">
+                <span>效价</span>
+                <strong id="valenceValue">0.00</strong>
+                <div class="metric-track" aria-hidden="true">
+                  <span id="valenceMarker" class="metric-marker"></span>
+                </div>
+                <small id="valenceHint">偏中性</small>
+              </article>
+              <article class="metric">
+                <span>唤醒度</span>
+                <strong id="arousalValue">0.00</strong>
+                <div class="metric-track" aria-hidden="true">
+                  <span id="arousalMarker" class="metric-marker"></span>
+                </div>
+                <small id="arousalHint">平静程度</small>
+              </article>
+              <article class="metric">
+                <span>强度</span>
+                <strong id="intensityValue">0.00</strong>
+                <div class="metric-track" aria-hidden="true">
+                  <span id="intensityMarker" class="metric-marker"></span>
+                </div>
+                <small id="intensityHint">表达强度</small>
+              </article>
+            </section>
+
+            <section class="trend-section" aria-labelledby="trendTitle">
+              <div class="panel-title-row">
+                <div>
+                  <span class="panel-kicker">TEMPORAL</span>
+                  <h3 id="trendTitle">多轮变化</h3>
+                </div>
+                <span id="trendLabel" class="trend-label">等待更多轮次</span>
+              </div>
+              <svg
+                id="trendChart"
+                class="trend-chart"
+                viewBox="0 0 320 104"
+                role="img"
+                aria-label="最近几轮对话的效价变化趋势"
+              >
+                <title>最近几轮对话的效价变化</title>
+                <line
+                  x1="12"
+                  y1="52"
+                  x2="308"
+                  y2="52"
+                  class="trend-baseline"
+                />
+              </svg>
+              <div class="trend-foot">
+                <span id="stabilityValue">稳定性 —</span>
+                <span id="durationValue">低效价持续 0 秒</span>
+              </div>
+            </section>
+
+            <section class="distribution-section" aria-labelledby="distributionTitle">
+              <div class="panel-title-row">
+                <div>
+                  <span class="panel-kicker">DISTRIBUTION</span>
+                  <h3 id="distributionTitle">情绪分布</h3>
+                </div>
+                <span class="panel-note">置信度已校准？否</span>
+              </div>
+              <div
+                id="distributionList"
+                class="distribution-list"
+                aria-label="六类情绪概率"
+              ></div>
+            </section>
+
+            <section class="signal-grid">
+              <article class="signal-block">
+                <span class="panel-kicker">COMPANION NEEDS</span>
+                <h3>陪伴线索</h3>
+                <div id="needsList" class="tag-list">
+                  <span class="empty-tag">暂无明确线索</span>
+                </div>
+              </article>
+              <article class="signal-block">
+                <span class="panel-kicker">EVIDENCE</span>
+                <h3>判断依据</h3>
+                <ul id="evidenceList" class="evidence-list"></ul>
+              </article>
+            </section>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="app-footer">
+        <span id="sessionLabel">本地临时会话</span>
+        <span>数据仅保存在当前服务内存中</span>
+      </footer>
+    </div>
+
+    <script type="module" src="/app.js?v=0.6.0"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+[
+  { "text": "雨停了，事情也办成了，心里亮堂多了。", "expected": "joy" },
+  { "text": "今天一整天都不想跟任何人说话。", "expected": "sadness" },
+  { "text": "脑子里全是明天那件事。", "expected": "anxiety" },
+  { "text": "他这样做真的让我受不了。", "expected": "anger_irritation" },
+  { "text": "这有什么好高兴的。", "expected": "anger_irritation" },
+  { "text": "今天没有特别高兴，也没那么难过。", "expected": "neutral" },
+  { "text": "我一点都不担心，反而很期待。", "expected": "joy" }
+]

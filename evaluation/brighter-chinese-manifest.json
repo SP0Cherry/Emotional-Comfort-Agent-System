@@ -1,0 +1,46 @@
+{
+  "source_id": "brighter-dataset/BRIGHTER-emotion-intensities",
+  "source_url": "https://huggingface.co/datasets/brighter-dataset/BRIGHTER-emotion-intensities",
+  "source_license": "CC-BY-4.0",
+  "source_sha256": {
+    "dev": "c8f87908468db62fa7eaab3c338e05a1930a31e6a8869ccc09aa7020222194bc",
+    "test": "bdb9db4176ba1934dd77480fa372e44cfa53f85b341b4ed604d1bd4728828c2a",
+    "train": "a8a7ddcb997f1f29c236c26026fa68ab7d4aa4c3e6244395325a195a5cb951f9"
+  },
+  "output_sha256": "2bd43465619850617e8fa7cba47e2d2e995c47e64ec038cd3f27bb42e994a7f7",
+  "split_counts": {
+    "dev": 190,
+    "test": 2449,
+    "train": 2445
+  },
+  "split_label_counts": {
+    "dev": {
+      "neutral": 45,
+      "joy": 37,
+      "anger_irritation": 88,
+      "sadness": 16,
+      "anxiety": 4
+    },
+    "test": {
+      "anger_irritation": 1090,
+      "joy": 505,
+      "neutral": 576,
+      "sadness": 239,
+      "anxiety": 39
+    }
+  },
+  "skipped": {
+    "surprise_only": 102,
+    "tie": 283,
+    "duplicate": 15
+  },
+  "label_rule": "Official dev/test split; dominant emotion from highest non-zero intensity among anger, disgust, fear, joy, sadness. Ties and surprise-only rows are excluded. All-zero rows map to neutral.",
+  "speaker_isolated": false,
+  "prediction_aliases": {
+    "calm": "neutral"
+  },
+  "warning": "Official benchmark split, but speaker IDs are unavailable. Calm is not annotated; calm predictions map to neutral for scoring.",
+  "evaluation_sample_limit": 1000,
+  "evaluation_sampling": "Deterministic stratified sample of up to 1000 test rows by label using SHA-256 ordering.",
+  "include_classifier": true
+}

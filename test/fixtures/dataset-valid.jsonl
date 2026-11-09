@@ -1,0 +1,6 @@
+{"sample_id":"s1","speaker_id":"spk1","split":"train","audio_path":"../../public/favicon.svg","text":"今天很开心","emotion":"joy","valence":0.8,"arousal":0.6,"intensity":0.7,"consent":true}
+{"sample_id":"s2","speaker_id":"spk1","split":"train","audio_path":"../../public/favicon.svg","text":"心里很平静","emotion":"calm","valence":0.3,"arousal":0.2,"intensity":0.5,"consent":true}
+{"sample_id":"s3","speaker_id":"spk2","split":"train","audio_path":"../../public/favicon.svg","text":"最近很难过","emotion":"sadness","valence":-0.7,"arousal":0.3,"intensity":0.7,"consent":true}
+{"sample_id":"s4","speaker_id":"spk2","split":"train","audio_path":"../../public/favicon.svg","text":"明天有点担心","emotion":"anxiety","valence":-0.5,"arousal":0.7,"intensity":0.6,"consent":true}
+{"sample_id":"s5","speaker_id":"spk3","split":"dev","audio_path":"../../public/favicon.svg","text":"这让我很生气","emotion":"anger_irritation","valence":-0.7,"arousal":0.8,"intensity":0.8,"consent":true}
+{"sample_id":"s6","speaker_id":"spk4","split":"test","audio_path":"../../public/favicon.svg","text":"下午三点开会","emotion":"neutral","valence":0,"arousal":0.3,"intensity":0.2,"consent":true}

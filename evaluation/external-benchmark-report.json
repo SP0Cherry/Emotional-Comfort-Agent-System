@@ -1,0 +1,360 @@
+{
+  "generated_at": "2026-11-02T00:59:16.784Z",
+  "model_service": {
+    "status": "ok",
+    "text_model": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "provider": "llm",
+      "ready": true
+    },
+    "text_classifier": {
+      "id": "Johnson8187/Chinese-Emotion-Small",
+      "ready": false
+    },
+    "speech_model": {
+      "id": "FunAudioLLM/SenseVoiceSmall",
+      "ready": true
+    },
+    "speech_emotion_model": {
+      "id": "emotion2vec/emotion2vec_plus_base",
+      "ready": true
+    }
+  },
+  "source": {
+    "name": "Johnson8187/Chinese_Multi-Emotion_Dialogue_Dataset",
+    "url": "https://huggingface.co/datasets/Johnson8187/Chinese_Multi-Emotion_Dialogue_Dataset",
+    "license": "MIT",
+    "source_sha256": "f8a96c78f11b070937166968703ae89e9065b5d7508328b0c94f174626e8f484",
+    "output_sha256": "d5fcd211818a0b64012f31c86164ca0451e9bfad6340e4ef738ff9090ffebb3e",
+    "mapped_rows": 3271,
+    "dev_rows": 324,
+    "test_rows": 650,
+    "speaker_isolated": false,
+    "warning": "Original dataset has no speaker IDs and visible label noise. Use as external stress test, not a gold speaker-independent benchmark."
+  },
+  "calibration": {
+    "rule": {
+      "weight": 4.147433724497393,
+      "bias": -2.188544992295749
+    },
+    "qwen": {
+      "weight": 1.386269280876239,
+      "bias": -0.9462773627022807
+    },
+    "hybrid": {
+      "weight": 2.0049543976261726,
+      "bias": -0.9387689169378888
+    }
+  },
+  "test_metrics": {
+    "rule": {
+      "accuracy": 0.33692307692307694,
+      "macro_f1": 0.25209522180648075,
+      "uar": 0.27234272685881283,
+      "per_class": {
+        "joy": {
+          "support": 123,
+          "precision": 0.9230769230769231,
+          "recall": 0.3902439024390244,
+          "f1": 0.5485714285714286
+        },
+        "calm": {
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "sadness": {
+          "support": 110,
+          "precision": 0.2857142857142857,
+          "recall": 0.05454545454545454,
+          "f1": 0.09160305343511449
+        },
+        "anxiety": {
+          "support": 108,
+          "precision": 0.4642857142857143,
+          "recall": 0.12037037037037036,
+          "f1": 0.1911764705882353
+        },
+        "anger_irritation": {
+          "support": 173,
+          "precision": 0.9117647058823529,
+          "recall": 0.1791907514450867,
+          "f1": 0.2995169082125604
+        },
+        "neutral": {
+          "support": 136,
+          "precision": 0.2429718875502008,
+          "recall": 0.8897058823529411,
+          "f1": 0.38170347003154576
+        }
+      },
+      "confusion": {
+        "joy": {
+          "joy": 48,
+          "calm": 2,
+          "sadness": 0,
+          "anxiety": 1,
+          "anger_irritation": 0,
+          "neutral": 72
+        },
+        "calm": {
+          "joy": 0,
+          "calm": 0,
+          "sadness": 0,
+          "anxiety": 0,
+          "anger_irritation": 0,
+          "neutral": 0
+        },
+        "sadness": {
+          "joy": 3,
+          "calm": 1,
+          "sadness": 6,
+          "anxiety": 6,
+          "anger_irritation": 1,
+          "neutral": 93
+        },
+        "anxiety": {
+          "joy": 0,
+          "calm": 10,
+          "sadness": 13,
+          "anxiety": 13,
+          "anger_irritation": 0,
+          "neutral": 72
+        },
+        "anger_irritation": {
+          "joy": 0,
+          "calm": 0,
+          "sadness": 0,
+          "anxiety": 2,
+          "anger_irritation": 31,
+          "neutral": 140
+        },
+        "neutral": {
+          "joy": 1,
+          "calm": 4,
+          "sadness": 2,
+          "anxiety": 6,
+          "anger_irritation": 2,
+          "neutral": 121
+        }
+      },
+      "ece": 0.05091230769230845,
+      "calibrated_ece": 0.04678976707348849,
+      "accuracy_ci": {
+        "lower_95": 0.3,
+        "upper_95": 0.37384615384615383
+      },
+      "macro_f1_ci": {
+        "lower_95": 0.22367292385922963,
+        "upper_95": 0.27985024859965524
+      }
+    },
+    "qwen": {
+      "accuracy": 0.5938461538461538,
+      "macro_f1": 0.5082832213301671,
+      "uar": 0.49743696894267186,
+      "per_class": {
+        "joy": {
+          "support": 123,
+          "precision": 0.8275862068965517,
+          "recall": 0.975609756097561,
+          "f1": 0.8955223880597015
+        },
+        "calm": {
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "sadness": {
+          "support": 110,
+          "precision": 0.6026490066225165,
+          "recall": 0.8272727272727273,
+          "f1": 0.6973180076628352
+        },
+        "anxiety": {
+          "support": 108,
+          "precision": 0.3655913978494624,
+          "recall": 0.3148148148148148,
+          "f1": 0.3383084577114428
+        },
+        "anger_irritation": {
+          "support": 173,
+          "precision": 0.9642857142857143,
+          "recall": 0.6242774566473989,
+          "f1": 0.7578947368421053
+        },
+        "neutral": {
+          "support": 136,
+          "precision": 0.7021276595744681,
+          "recall": 0.2426470588235294,
+          "f1": 0.36065573770491804
+        }
+      },
+      "confusion": {
+        "joy": {
+          "joy": 120,
+          "calm": 1,
+          "sadness": 0,
+          "anxiety": 1,
+          "anger_irritation": 0,
+          "neutral": 1
+        },
+        "calm": {
+          "joy": 0,
+          "calm": 0,
+          "sadness": 0,
+          "anxiety": 0,
+          "anger_irritation": 0,
+          "neutral": 0
+        },
+        "sadness": {
+          "joy": 2,
+          "calm": 4,
+          "sadness": 91,
+          "anxiety": 11,
+          "anger_irritation": 2,
+          "neutral": 0
+        },
+        "anxiety": {
+          "joy": 1,
+          "calm": 33,
+          "sadness": 26,
+          "anxiety": 34,
+          "anger_irritation": 1,
+          "neutral": 13
+        },
+        "anger_irritation": {
+          "joy": 1,
+          "calm": 3,
+          "sadness": 23,
+          "anxiety": 38,
+          "anger_irritation": 108,
+          "neutral": 0
+        },
+        "neutral": {
+          "joy": 21,
+          "calm": 61,
+          "sadness": 11,
+          "anxiety": 9,
+          "anger_irritation": 1,
+          "neutral": 33
+        }
+      },
+      "ece": 0.26491692307691395,
+      "calibrated_ece": 0.03715339585680998,
+      "accuracy_ci": {
+        "lower_95": 0.5615384615384615,
+        "upper_95": 0.6307692307692307
+      },
+      "macro_f1_ci": {
+        "lower_95": 0.480772054301466,
+        "upper_95": 0.5367731206308456
+      }
+    },
+    "hybrid": {
+      "accuracy": 0.5984615384615385,
+      "macro_f1": 0.5143845394914077,
+      "uar": 0.49929256692003315,
+      "per_class": {
+        "joy": {
+          "support": 123,
+          "precision": 0.823943661971831,
+          "recall": 0.9512195121951219,
+          "f1": 0.8830188679245283
+        },
+        "calm": {
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "sadness": {
+          "support": 110,
+          "precision": 0.6099290780141844,
+          "recall": 0.7818181818181819,
+          "f1": 0.6852589641434262
+        },
+        "anxiety": {
+          "support": 108,
+          "precision": 0.38613861386138615,
+          "recall": 0.3611111111111111,
+          "f1": 0.37320574162679426
+        },
+        "anger_irritation": {
+          "support": 173,
+          "precision": 0.95,
+          "recall": 0.6589595375722543,
+          "f1": 0.7781569965870307
+        },
+        "neutral": {
+          "support": 136,
+          "precision": 0.75,
+          "recall": 0.2426470588235294,
+          "f1": 0.36666666666666664
+        }
+      },
+      "confusion": {
+        "joy": {
+          "joy": 117,
+          "calm": 3,
+          "sadness": 0,
+          "anxiety": 2,
+          "anger_irritation": 0,
+          "neutral": 1
+        },
+        "calm": {
+          "joy": 0,
+          "calm": 0,
+          "sadness": 0,
+          "anxiety": 0,
+          "anger_irritation": 0,
+          "neutral": 0
+        },
+        "sadness": {
+          "joy": 4,
+          "calm": 3,
+          "sadness": 86,
+          "anxiety": 14,
+          "anger_irritation": 3,
+          "neutral": 0
+        },
+        "anxiety": {
+          "joy": 1,
+          "calm": 32,
+          "sadness": 25,
+          "anxiety": 39,
+          "anger_irritation": 1,
+          "neutral": 10
+        },
+        "anger_irritation": {
+          "joy": 0,
+          "calm": 3,
+          "sadness": 22,
+          "anxiety": 34,
+          "anger_irritation": 114,
+          "neutral": 0
+        },
+        "neutral": {
+          "joy": 20,
+          "calm": 61,
+          "sadness": 8,
+          "anxiety": 12,
+          "anger_irritation": 2,
+          "neutral": 33
+        }
+      },
+      "ece": 0.06582000000000136,
+      "calibrated_ece": 0.03375665878643381,
+      "accuracy_ci": {
+        "lower_95": 0.5676923076923077,
+        "upper_95": 0.6369230769230769
+      },
+      "macro_f1_ci": {
+        "lower_95": 0.4850195888446304,
+        "upper_95": 0.5433588836138667
+      }
+    }
+  }
+}

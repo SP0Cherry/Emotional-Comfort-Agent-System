@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+.venv*/
+.model-cache/
+models/
+outputs/*
+!outputs/*.pptx
+.pycache/
+.codex-build/
+.codex-finalizer/
+.chart-data-*/
+*.log
+.env
+.env.*
+!.env.example

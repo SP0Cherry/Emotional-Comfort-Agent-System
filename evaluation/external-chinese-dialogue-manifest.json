@@ -1,0 +1,54 @@
+{
+  "source_id": "Johnson8187/Chinese_Multi-Emotion_Dialogue_Dataset",
+  "source_url": "https://huggingface.co/datasets/Johnson8187/Chinese_Multi-Emotion_Dialogue_Dataset",
+  "source_license": "MIT",
+  "source_sha256": "f8a96c78f11b070937166968703ae89e9065b5d7508328b0c94f174626e8f484",
+  "output_sha256": "d5fcd211818a0b64012f31c86164ca0451e9bfad6340e4ef738ff9090ffebb3e",
+  "original_rows": 4159,
+  "mapped_rows": 3271,
+  "split_counts": {
+    "dev": 324,
+    "train": 2297,
+    "test": 650
+  },
+  "label_counts": {
+    "neutral": 704,
+    "joy": 591,
+    "sadness": 486,
+    "anger_irritation": 931,
+    "anxiety": 559
+  },
+  "split_label_counts": {
+    "train": {
+      "joy": 425,
+      "sadness": 325,
+      "anger_irritation": 654,
+      "neutral": 499,
+      "anxiety": 394
+    },
+    "dev": {
+      "neutral": 69,
+      "anger_irritation": 104,
+      "sadness": 51,
+      "joy": 43,
+      "anxiety": 57
+    },
+    "test": {
+      "sadness": 110,
+      "neutral": 136,
+      "joy": 123,
+      "anger_irritation": 173,
+      "anxiety": 108
+    }
+  },
+  "excluded_labels": {
+    "驚奇語調": 499,
+    "疑問語調": 386
+  },
+  "empty_rows": 0,
+  "duplicates_removed": 3,
+  "split_method": "SHA-256 text bucket: 10% dev, 20% test, 70% train",
+  "speaker_isolated": false,
+  "gold_label_warning": "Original dataset has no speaker IDs and visible label noise. Use as external stress test, not a gold speaker-independent benchmark.",
+  "training_overlap_warning": "Chinese-Emotion-Small was trained on this source. Do not report it as an independent generalization result."
+}
