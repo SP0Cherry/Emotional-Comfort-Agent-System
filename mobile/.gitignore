@@ -1,0 +1,9 @@
+.dart_tool/
+.flutter-plugins*
+.pub-cache/
+build/
+android/local.properties
+android/.gradle/
+android/.kotlin/
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+*.iml

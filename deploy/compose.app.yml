@@ -1,0 +1,59 @@
+name: elder-companion
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: companion
+      POSTGRES_USER: companion_dev
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      TZ: UTC
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U companion_dev -d companion"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+  migrate:
+    image: elder-companion-backend:0.1.0-dev
+    build: ../backend
+    env_file: .env.local
+    environment:
+      DATABASE_URL: postgresql+psycopg://companion_dev:${POSTGRES_PASSWORD}@db:5432/companion
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    image: elder-companion-backend:0.1.0-dev
+    build: ../backend
+    env_file: .env.local
+    environment:
+      DATABASE_URL: postgresql+psycopg://companion_dev:${POSTGRES_PASSWORD}@db:5432/companion
+      LOCAL_STORAGE_DIR: /app/storage
+    ports:
+      - "${API_BIND:-127.0.0.1}:8000:8000"
+    volumes:
+      - photos:/app/storage
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+  worker:
+    image: elder-companion-backend:0.1.0-dev
+    build: ../backend
+    env_file: .env.local
+    environment:
+      DATABASE_URL: postgresql+psycopg://companion_dev:${POSTGRES_PASSWORD}@db:5432/companion
+      LOCAL_STORAGE_DIR: /app/storage
+    command: ["python", "-m", "app.worker"]
+    volumes:
+      - photos:/app/storage
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+volumes:
+  pgdata:
+  photos:
