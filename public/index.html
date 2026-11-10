@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>情感抚慰陪伴系统</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 侧边栏：会话列表 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>陪伴对话</h1>
+        <button id="newSessionBtn" class="btn-primary" title="新建对话">+ 新建</button>
+      </div>
+      <div id="sessionList" class="session-list"></div>
+    </aside>
+
+    <!-- 主区域 -->
+    <main class="main">
+      <!-- 顶栏 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <select id="personaSelect" class="persona-select" title="选择陪伴者年龄段">
+            <option value="">选择陪伴者年龄段</option>
+          </select>
+        </div>
+        <div class="topbar-right">
+          <div id="emotionBadge" class="emotion-badge hidden">
+            <span id="emotionLabel"></span>
+            <span id="emotionRisk"></span>
+          </div>
+          <button id="settingsBtn" class="btn-icon" title="设置">⚙</button>
+        </div>
+      </header>
+
+      <!-- 对话区 -->
+      <div id="chatArea" class="chat-area">
+        <div class="empty-state" id="emptyState">
+          <p>👋 你好，我是你的情感陪伴者</p>
+          <p class="hint">选择左侧会话或新建对话开始聊天</p>
+        </div>
+        <div id="messages" class="messages"></div>
+      </div>
+
+      <!-- 输入区 -->
+      <footer class="input-area">
+        <div class="input-row">
+          <select id="asrEngineSelect" class="asr-select" title="语音识别引擎">
+            <option value="web-speech">浏览器识别</option>
+            <option value="bailian">百炼ASR</option>
+          </select>
+          <button id="voiceBtn" class="btn-voice" title="语音输入">🎤</button>
+          <textarea
+            id="messageInput"
+            class="message-input"
+            placeholder="输入消息，按 Enter 发送..."
+            rows="1"
+          ></textarea>
+          <button id="sendBtn" class="btn-send" title="发送">➤</button>
+        </div>
+        <div id="voiceStatus" class="voice-status hidden"></div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- 设置弹窗 -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>系统设置</h2>
+        <button id="closeSettingsBtn" class="btn-close">×</button>
+      </div>
+      <div class="modal-body">
+        <section class="config-section">
+          <h3>LLM 配置（OpenAI 兼容）</h3>
+          <label>Base URL
+            <input type="text" id="cfgBaseUrl" placeholder="https://api.openai.com/v1" />
+          </label>
+          <label>API Key
+            <input type="password" id="cfgApiKey" placeholder="sk-..." />
+          </label>
+          <label>Model
+            <input type="text" id="cfgModel" placeholder="gpt-4o-mini" />
+          </label>
+          <button id="testLlmBtn" class="btn-secondary">测试连通性</button>
+          <span id="testLlmResult" class="test-result"></span>
+        </section>
+
+        <section class="config-section">
+          <h3>百炼 ASR 配置</h3>
+          <label>API Key
+            <input type="password" id="cfgBailianKey" placeholder="百炼 API Key" />
+          </label>
+          <label>热词表路径
+            <input type="text" id="cfgHotwordsPath" placeholder="../ASR/hotwords/cantonese_elderly.json" />
+          </label>
+          <button id="testAsrBtn" class="btn-secondary">测试配置</button>
+          <span id="testAsrResult" class="test-result"></span>
+        </section>
+
+        <section class="config-section">
+          <h3>人格配置</h3>
+          <div id="personaEditor" class="persona-editor"></div>
+          <button id="savePersonasBtn" class="btn-secondary">保存人格配置</button>
+        </section>
+      </div>
+      <div class="modal-footer">
+        <button id="saveConfigBtn" class="btn-primary">保存全部配置</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
