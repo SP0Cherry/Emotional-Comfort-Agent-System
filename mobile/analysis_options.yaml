@@ -1,0 +1,7 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    unused_import: error
+  exclude:
+    - build/**
+    - android/**
