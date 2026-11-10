@@ -1,0 +1,25 @@
+# 数据集
+KeSpeech/
+fleurs/
+
+# 模型权重
+models/
+
+# 输出与临时数据
+output/
+
+# IDE / 工具产生的临时目录
+.agents/
+.chart-data-*/
+.ppt-build-asr/
+.trae/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 系统文件
+Thumbs.db
+Desktop.ini
