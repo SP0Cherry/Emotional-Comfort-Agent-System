@@ -19,7 +19,7 @@
 - [模型权重交接](model-handoff.md)
 - [两周阶段报告](two-week-group-meeting-report.md)
 - [技术问答稿](group-meeting-technical-qa.md)
-- [组会答辩 PPT](../outputs/情感识别模块_两周组会汇报_v1.pptx)
+- [组会答辩 PPT](../outputs/情感识别模块_三周组会汇报_v2.pptx)
 
 ## 2. 已交付能力
 

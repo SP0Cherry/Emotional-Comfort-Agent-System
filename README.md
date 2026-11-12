@@ -15,7 +15,7 @@
 | [技术问答稿](docs/group-meeting-technical-qa.md) | 常见技术追问和回答口径 |
 | [两周阶段报告](docs/two-week-group-meeting-report.md) | 完整实验、数据和错误分析 |
 | [长期需求与规划](docs/emotion-recognition-future-spec.md) | 文本、语音、视觉、方言和个人基线的后续设想 |
-| [组会答辩 PPT](outputs/情感识别模块_两周组会汇报_v1.pptx) | 11 页阶段汇报材料 |
+| [组会答辩 PPT](outputs/情感识别模块_三周组会汇报_v2.pptx) | 10 页三周阶段汇报材料 |
 | [第三方依赖与数据说明](THIRD_PARTY_NOTICES.md) | 模型、数据许可证和使用注意 |
 
 ## 当前模块结构
